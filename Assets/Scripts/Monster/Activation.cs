@@ -4,7 +4,7 @@ using System.Collections;
 public class Activation : MonoBehaviour
 {
     // VARIABLES
-    private Collider activatedObjectCollider;
+    private GameObject activatedObject;
     private MeshRenderer activatedObjectRenderer;
     private Color startingColor;
     private Color targetColor;
@@ -33,7 +33,7 @@ public class Activation : MonoBehaviour
             {
                 fadingTimer = 0f;
                 canFade = false;
-                activatedObjectCollider.enabled = false;
+                activatedObject.SetActive(false);
             }
         }
 	}
@@ -44,7 +44,7 @@ public class Activation : MonoBehaviour
         {
             canFade = true;
             fadingTimer = 0f;
-            activatedObjectCollider = collider;
+            activatedObject = collider.gameObject;
             activatedObjectRenderer = collider.GetComponent<MeshRenderer>();
             startingColor = activatedObjectRenderer.material.GetColor("_EmissionColor");
             targetColor = collider.GetComponent<Activeable>().targetColor;
