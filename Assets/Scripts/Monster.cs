@@ -3,6 +3,8 @@ using System.Collections;
 
 public class Monster : MonoBehaviour
 {
+    public float speed;
+
     private Player player;
 
 
@@ -15,6 +17,7 @@ public class Monster : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<Player>();
 
         agent = GetComponent<NavMeshAgent>();
+        agent.speed = speed;
 	}
 	
 	// Update is called once per frame
@@ -22,4 +25,12 @@ public class Monster : MonoBehaviour
     {
         agent.destination = player.transform.position;
 	}
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.CompareTag("Player"))
+        {
+            agent.Stop();
+        }
+    }
 }
