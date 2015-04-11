@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: medusa
-  m_Shader: {fileID: 4800000, guid: 2a9ae2637ab36db4c833e50f29d3758d, type: 3}
+  m_Name: MonsterPart1
+  m_Shader: {fileID: 4800000, guid: f5df787f4685d3d41b12612ee71cec70, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -92,28 +92,16 @@ Material:
         second: 0
       data:
         first:
-          name: _Glossiness
-        second: .5
-      data:
-        first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _Phase
-        second: 1
-      data:
-        first:
-          name: _Decal
-        second: 0
-      data:
-        first:
           name: _Parallax
         second: .0199999996
       data:
         first:
           name: _ZWrite
         second: 1
+      data:
+        first:
+          name: _Glossiness
+        second: .5
       data:
         first:
           name: _BumpScale
@@ -137,6 +125,18 @@ Material:
       data:
         first:
           name: _Mode
+        second: 0
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _Phase
+        second: 1
+      data:
+        first:
+          name: _Decal
         second: 0
     m_Colors:
       data:
