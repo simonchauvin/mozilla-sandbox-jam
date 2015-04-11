@@ -133,7 +133,7 @@ Material:
       data:
         first:
           name: _Phase
-        second: 1
+        second: 3
       data:
         first:
           name: _Decal
@@ -146,8 +146,12 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 1, g: 0, b: 0, a: 1}
       data:
         first:
           name: _EmissionColorUI
         second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _Color2
+        second: {r: .911764681, g: 0, b: 0, a: 1}
