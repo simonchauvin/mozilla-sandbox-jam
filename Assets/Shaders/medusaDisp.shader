@@ -1,6 +1,7 @@
 ﻿Shader "Custom/medusa Displacement" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
+		_Color2 ("Color 2", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
@@ -23,11 +24,13 @@
 
 		struct Input {
 			float2 uv_MainTex;
+			float3 height;
 		};
 
 		half _Glossiness;
 		half _Metallic;
 		fixed4 _Color;
+		fixed4 _Color2;
 		
 		float _Phase;
 		float _Decal;
@@ -43,21 +46,24 @@
         };
 		
 		
-		void vert(inout appdata v)
+		void vert(inout appdata v, out Input data)
 		{
+			UNITY_INITIALIZE_OUTPUT(Input, data);
 			const float PI = 3.14159;
 			
 			float dist = (abs(v.vertex.x) + abs(v.vertex.y)) * 0.5;
 		
-			float ph = sin(_Decal + _Time.y * _Phase + PI * dist * 2);
+			float ph = sin(_Decal + _Time.y * _Phase + PI * (1 - dist) * (1 - dist) * 3);
 			
-			v.vertex.xyz += v.normal * ph * 0.1;	
+			v.vertex.xyz += v.normal * ph * 0.1;
+			
+			data.height = 1 - (ph * 0.3);
 		}
 		
 
 		void surf (Input IN, inout SurfaceOutput o) {
 
-			o.Albedo = _Color.rgb;
+			o.Emission = lerp(_Color.rgb, _Color2.rgb, IN.height);
 			
 			o.Alpha = 1.0;
 		}
