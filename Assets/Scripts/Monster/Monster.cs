@@ -4,9 +4,6 @@ using System.Collections;
 public class Monster : MonoBehaviour
 {
     public float speed;
-    public Color red;
-    public Color green;
-    public Color blue;
     public float minTimeBetweenColorSwitch;
     public float maxTimeBetweenColorSwitch;
 
@@ -40,8 +37,8 @@ public class Monster : MonoBehaviour
         switchTimer = 0f;
         switchTime = Random.Range(minTimeBetweenColorSwitch, maxTimeBetweenColorSwitch);
         fadingTimer = 99f;
-        startingColor = red;
-        targetColor = red;
+        startingColor = GameManager.instance.red;
+        targetColor = GameManager.instance.red;
         setColor(startingColor);
 	}
 	
@@ -55,14 +52,14 @@ public class Monster : MonoBehaviour
         switchTimer += Time.deltaTime;
         if (switchTimer >= switchTime)
         {
-            targetColor = red;
+            targetColor = GameManager.instance.red;
             int value = Mathf.FloorToInt(Random.Range(0f, 3f));
             if (value == 1)
             {
-                targetColor = green;
+                targetColor = GameManager.instance.green;
             } else if (value == 2)
             {
-                targetColor = blue;
+                targetColor = GameManager.instance.blue;
             }
             fadingTimer = 0f;
             startingColor = getColor();
@@ -80,8 +77,10 @@ public class Monster : MonoBehaviour
 
     void setColor (Color color)
     {
-        rendererMonsterPart1.material.color = color;
-        rendererMonsterPart2.material.color = color;
+        rendererMonsterPart1.material.SetColor("_Color", color);
+        rendererMonsterPart1.material.SetColor("_Color2", color);
+        rendererMonsterPart2.material.SetColor("_Color", color);
+        rendererMonsterPart2.material.SetColor("_Color2", color);
     }
 
     Color getColor()
@@ -89,11 +88,12 @@ public class Monster : MonoBehaviour
         return rendererMonsterPart1.material.color;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter (Collider collider)
     {
         if (collider.CompareTag("Player"))
         {
             agent.Stop();
+            // TODO application restart
         }
     }
 }
