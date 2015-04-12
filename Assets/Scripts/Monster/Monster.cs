@@ -45,9 +45,6 @@ public class Monster : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        // Follow the player
-        agent.destination = player.transform.position;
-
         // Change color periodically
         switchTimer += Time.deltaTime;
         if (switchTimer >= switchTime)
