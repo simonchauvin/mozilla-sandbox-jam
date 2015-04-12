@@ -35,7 +35,7 @@ public class StateManager : MonoBehaviour
         agent = GetComponentInParent<NavMeshAgent>();
         waypoints = waypointFolder.GetComponentsInChildren<Transform>();
 
-        currentState = State.wander;
+        currentState = State.chase;
         arrived = true;
 	}
 	
@@ -65,9 +65,6 @@ public class StateManager : MonoBehaviour
                     }
                     lastDestination = currentDestination;
                     currentDestination = closest;
-                    //NavMeshPath path;
-                    //agent.CalculatePath(currentDestination.position, path);
-                    //Debug.Log(path.)
                     arrived = false;
                 }
                 else
@@ -94,8 +91,8 @@ public class StateManager : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            currentState = State.wander;
-            arrived = true;
+            //currentState = State.wander;
+            //arrived = true;
         }
     }
 }
