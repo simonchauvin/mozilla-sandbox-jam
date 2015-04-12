@@ -90,7 +90,7 @@ public class Monster : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             agent.Stop();
-            // TODO application restart
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 }

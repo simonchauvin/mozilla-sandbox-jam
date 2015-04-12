@@ -65,6 +65,9 @@ public class StateManager : MonoBehaviour
                     }
                     lastDestination = currentDestination;
                     currentDestination = closest;
+                    //NavMeshPath path;
+                    //agent.CalculatePath(currentDestination.position, path);
+                    //Debug.Log(path.)
                     arrived = false;
                 }
                 else
